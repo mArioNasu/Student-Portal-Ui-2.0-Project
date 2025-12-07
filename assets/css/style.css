@@ -1,0 +1,773 @@
+/* ===========================
+   GLOBAL LAYOUT & BACKGROUND
+   =========================== */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f5f7fb; /* soft light background */
+}
+
+/* Make main content grow, footer stays at bottom */
+main.container {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+/* ===========================
+   COLOR PALETTE (UiTM-ish)
+   =========================== */
+/* Override Bootstrap primary color to a deeper blue/purple */
+
+.bg-primary {
+  background-color: #1a237e !important; /* deep blue */
+}
+
+.btn-primary {
+  background-color: #1a237e !important;
+  border-color: #1a237e !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #283593 !important; /* slightly lighter on hover */
+  border-color: #283593 !important;
+}
+
+.table-primary {
+  --bs-table-bg: #e8eaf6;
+  --bs-table-border-color: #c5cae9;
+}
+
+/* ===========================
+   NAVBAR STYLING
+   =========================== */
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.navbar .nav-link {
+  font-size: 0.95rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+  border-bottom: 2px solid #ffca28; /* golden underline for active page */
+}
+
+.navbar .nav-link:hover {
+  opacity: 0.9;
+}
+
+/* ===========================
+   CARDS & DASHBOARD FEEL
+   =========================== */
+
+.card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0.4rem 0.9rem rgba(15, 23, 42, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.7rem 1.4rem rgba(15, 23, 42, 0.12);
+}
+
+/* Make big numbers on dashboard look nice */
+.card .display-6 {
+  font-weight: 600;
+}
+
+/* ===========================
+   DARK THEME – TABLES & CARDS
+   =========================== */
+
+/* Card header text (eg. "ACADEMIC PERFORMANCE") */
+body.dark-theme .card-header {
+  background-color: #020617;
+  color: #f9fafb !important;
+}
+
+/* Card background (so table blends nicely) */
+body.dark-theme .card {
+  background-color: #020617;
+}
+
+/* Base table colours in dark mode */
+body.dark-theme .table {
+  background-color: transparent;
+  color: #e5e7eb;
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+/* Header row */
+body.dark-theme .table thead th {
+  background-color: #020617 !important;
+  color: #f9fafb !important;
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* All body rows */
+body.dark-theme .table tbody tr {
+  background-color: #020617 !important;
+}
+
+/* Text in cells */
+body.dark-theme .table tbody td,
+body.dark-theme .table tbody th {
+  color: #e5e7eb !important;
+}
+
+/* Optional: subtle row separation */
+body.dark-theme .table tbody tr + tr td,
+body.dark-theme .table tbody tr + tr th {
+  border-top-color: rgba(148, 163, 184, 0.35);
+}
+
+
+/* ===========================
+   PROFILE PAGE
+   =========================== */
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a237e, #3949ab);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+  margin: 0 auto; /* <-- THIS centers your image */
+}
+
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.profile-name {
+  font-weight: 700;
+}
+
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  /* FIX → make text darker */
+  color: #475569 !important; /* slate-600, very readable */
+
+  background: #f1f5f9; /* light slate-100 badge background */
+  border-radius: 6px;
+}
+
+
+.profile-section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #90a4ae;
+}
+
+.profile-list dt {
+  font-weight: 600;
+  color: #455a64;
+}
+
+.profile-list dd {
+  margin-bottom: 0.4rem;
+}
+
+
+/* ===========================
+   LOGIN PAGE
+   =========================== */
+
+.login-card {
+  border-radius: 1rem;
+}
+
+/* Slightly lighter page background for login so card pops out */
+body.bg-light {
+  background-color: #eef1f7 !important;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+
+footer {
+  background-color: #ffffff;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+footer .text-muted {
+  color: #90a4ae !important;
+}
+
+/* ===========================
+   AUTH PAGE (LOGIN) STYLING
+   =========================== */
+
+.bg-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* soft diagonal gradient */
+  background: radial-gradient(circle at top left, #e8eaf6 0, #f5f7fb 40%, #e3f2fd 100%);
+}
+
+/* Glassmorphism login card */
+.login-card {
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Slightly bigger title on login */
+.login-card h3 {
+  font-weight: 700;
+}
+
+/* ===========================
+   DASHBOARD HERO
+   =========================== */
+
+.dashboard-hero {
+  padding: 1.25rem 1.5rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #1a237e, #3949ab);
+  color: #e8eaf6;
+  box-shadow: 0 18px 40px rgba(26, 35, 126, 0.35);
+}
+
+.hero-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.hero-title {
+  font-weight: 700;
+}
+
+.hero-sub {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.hero-pill {
+  min-width: 160px;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* ===========================
+   SIMPLE FADE-IN ANIMATION
+   =========================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* Stats cards (dashboard) */
+
+.stat-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.32);
+  margin-bottom: 0.5rem;
+}
+
+.stat-card-icon i {
+  font-size: 1.2rem;
+  color: #1a237e;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+/* ===========================
+   COURSES PAGE
+   =========================== */
+
+.course-card {
+  border-radius: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.course-icon {
+  width: 42px;
+  height: 42px;
+  background: rgba(26, 35, 126, 0.12);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a237e;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.course-detail-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #78909c;
+}
+
+.course-detail-value {
+  font-size: 0.93rem;
+  color: #37474f;
+}
+
+/* ===========================
+   GRADES PAGE
+   =========================== */
+
+/* Hover highlight */
+.grades-table tbody tr:hover {
+  background-color: #f5f7ff;
+  transition: background-color 0.2s ease;
+}
+
+/* Grade badge styling */
+.grade-badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Grade colors */
+.grade-Aplus { background-color: #1e88e5; }   /* Blue */
+.grade-A { background-color: #43a047; }       /* Green */
+.grade-Aminus { background-color: #66bb6a; }
+.grade-Bplus { background-color: #fbc02d; }   /* Yellow */
+.grade-B { background-color: #ffa726; }       /* Orange */
+.grade-C { background-color: #ef5350; }       /* Red */
+
+/* Section title */
+.grades-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: #78909c;
+}
+
+/* ===========================
+   PAGE TRANSITIONS
+   =========================== */
+
+.page-transition {
+  opacity: 0;
+  animation: fadeIn 0.45s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-out {
+  animation: fadeOut 0.35s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ===========================
+   DARK THEME
+   =========================== */
+
+body.dark-theme {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+/* Make main headings readable in dark mode */
+body.dark-theme h1,
+body.dark-theme .h1,
+body.dark-theme .h2,
+body.dark-theme .h3 {
+  color: #080e1c;
+}
+
+body.dark-theme h1,
+body.dark-theme .h1 {
+  color: #0f0404 !important;
+}
+
+
+/* Navbar */
+body.dark-theme .navbar.bg-primary {
+  background-color: #020617 !important;
+  border-bottom: 1px solid #111827;
+}
+
+/* Dashboard hero */
+body.dark-theme .dashboard-hero {
+  background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
+  color: #e5e7eb;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+}
+
+
+
+/* Make hero text bright in dark mode */
+body.dark-theme .dashboard-hero,
+body.dark-theme .dashboard-hero .hero-title,
+body.dark-theme .dashboard-hero .hero-sub,
+body.dark-theme .dashboard-hero .hero-kicker {
+  color: #f9fafb !important;
+}
+
+
+/* Cards */
+body.dark-theme .card {
+  background-color: #020617;
+  border-color: #111827;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
+  color: #e5e7eb;
+}
+
+/* Text muted in dark mode */
+body.dark-theme .text-muted {
+  color: #9ca3af !important;
+}
+
+/* Tables */
+body.dark-theme .table {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+body.dark-theme .table-primary {
+  --bs-table-bg: #111827;
+  --bs-table-border-color: #1f2937;
+  color: #e5e7eb;
+}
+
+/* Footer */
+body.dark-theme footer {
+  background-color: #020617;
+  border-top-color: #111827;
+}
+
+/* Login background & card in dark mode */
+body.dark-theme.bg-auth {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+}
+
+body.dark-theme .login-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: #111827;
+}
+
+/* Course cards hover slightly lighter in dark */
+body.dark-theme .course-card:hover {
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 1);
+}
+
+/* Profile avatar tweak */
+body.dark-theme .profile-avatar {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 1);
+}
+
+/* ===========================
+   DARK THEME – TABLES & GRADES
+   =========================== */
+
+/* Make card headers (e.g. "ACADEMIC PERFORMANCE") brighter in dark mode */
+body.dark-theme .card-header {
+  color: #f9fafb !important;
+}
+
+/* Table text (headers + cells) */
+body.dark-theme .table thead th,
+body.dark-theme .table tbody td {
+  color: #e5e7eb !important;
+}
+
+/* Subtle row striping so rows don’t blend into background */
+body.dark-theme .table tbody tr:nth-child(odd) {
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+body.dark-theme .table tbody tr:nth-child(even) {
+  background-color: rgba(15, 23, 42, 0.98);
+}
+
+/* Table borders in dark mode */
+body.dark-theme .table > :not(caption) > * > * {
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+
+/* ===========================
+   DASHBOARD EXTRA WIDGETS
+   =========================== */
+
+.progress-ring-wrapper {
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+/* Upcoming deadlines list */
+.deadlines-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.4);
+  font-size: 0.9rem;
+}
+
+.deadlines-list li:last-child {
+  border-bottom: none;
+}
+
+.deadline-course {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.deadline-date {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Dark mode tweaks */
+body.dark-theme .deadlines-list li {
+  border-bottom-color: rgba(148, 163, 184, 0.3);
+}
+
+body.dark-theme .deadline-course {
+  color: #e5e7eb;
+}
+
+body.dark-theme .deadline-date {
+  color: #9ca3af;
+}
+
+/* =========================================
+   DARK MODE FIX — FORCE TABLE ROW COLORS
+   ========================================= */
+body.dark-theme table.table {
+  color: #f1f5f9 !important; /* Light text */
+}
+
+body.dark-theme table.table thead th {
+  background-color: #0f172a !important; /* Dark header */
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+body.dark-theme table.table tbody tr {
+  background-color: #1e293b !important; /* Dark row background */
+}
+
+body.dark-theme table.table tbody td,
+body.dark-theme table.table tbody th {
+  color: #e2e8f0 !important; /* Light text in rows */
+  border-color: #334155 !important;
+}
+
+/* =========================================
+   DARK MODE – IMPROVE CARD TEXT CONTRAST
+   ========================================= */
+
+/* Make all card text a bit brighter in dark mode */
+body.dark-theme .card {
+  color: #e5e7eb; /* light grey */
+}
+
+/* Labels like "CREDIT HOURS", "STATUS" that use text-muted/small */
+body.dark-theme .card .text-muted,
+body.dark-theme .card small,
+body.dark-theme .card .card-subtitle {
+  color: #cbd5f5 !important; /* softer light blue-grey */
+}
+
+/* Course titles/headings on cards */
+body.dark-theme .card .card-title,
+body.dark-theme .card h5,
+body.dark-theme .card h6 {
+  color: #f9fafb !important; /* almost white */
+}
+
+/* ===========================
+   CORNER RIBBON (ANIMATED)
+   =========================== */
+
+.corner-ribbon {
+  width: 180px;
+  background: #17256b;
+  position: fixed;
+  top: 110px;                /* below navbar so it doesn't cover it */
+  right: -45px;
+  text-align: center;
+  line-height: 45px;
+  letter-spacing: 1px;
+  color: #fff;
+  font-weight: 600;
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  border-radius: 4px;
+
+  /* animation */
+  opacity: 0;
+  animation: ribbonSlideIn 0.9s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.corner-ribbon a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Dark mode variant */
+body.dark-theme .corner-ribbon {
+  background: hsl(244, 75%, 31%);
+  box-shadow: 0 0 14px rgba(15, 23, 42, 0.9);
+}
+
+/* Slide + fade in animation */
+@keyframes ribbonSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(80px) rotate(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(45deg);
+  }
+}
+
+/* ===========================
+   LOGIN PAGE TICKER
+   =========================== */
+
+.login-ticker {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.92);
+  color: #e5e7eb;
+  font-size: 0.75rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+  max-width: 90%;
+  z-index: 900;
+}
+
+.ticker-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: #100701;
+  color: #111827;
+  flex-shrink: 0;
+}
+
+.ticker-text {
+  white-space: nowrap;
+  display: inline-block;
+  animation: tickerScroll 20s linear infinite;
+}
+
+/* make text scroll from right to left */
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Dark mode tweak if you ever use it on other pages */
+body.dark-theme .login-ticker {
+  background: rgba(15, 23, 42, 0.98);
+}
